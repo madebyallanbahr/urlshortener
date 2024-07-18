@@ -87,7 +87,7 @@ const generateURL = async () => {
     })
 
     const data = await response.json()
-
+    console.log(data);
     if (!response.ok) {
       error.value = data.error
       setTimeout(() => {
@@ -97,7 +97,7 @@ const generateURL = async () => {
     }
 
     fullURL.value.push(url.value)
-    shortURL.value.push(data.short)
+    shortURL.value.push(data.shortUrl)
   } catch (error) {
     console.error('Error:', error.message)
   }
