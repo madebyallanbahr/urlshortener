@@ -65,7 +65,7 @@ const generateURL = async () => {
     return
   }
   try {
-    const response = await fetch('  http://localhost:4440/api/short', {
+    const response = await fetch('https://www.urlshortener.com.br/api/short', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const generateURL = async () => {
     })
 
     const data = await response.json()
-    console.log(data);
+    console.log(data)
     if (!response.ok) {
       error.value = data.error
       setTimeout(() => {
