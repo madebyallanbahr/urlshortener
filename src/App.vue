@@ -74,7 +74,7 @@ const generateURL = async () => {
     })
 
     const data = await response.json()
-
+    console.log(data);
     if (!response.ok) {
       error.value = data.error
       setTimeout(() => {
