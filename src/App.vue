@@ -20,12 +20,8 @@
       </thead>
       <tbody>
         <tr v-for="(url, index) in fullURL" :key="index">
-          <!-- Coluna para URL Original -->
           <td>{{ url }}</td>
-          <!-- Coluna para URL Encurtada -->
           <td>{{ shortURL[index] }}</td>
-
-          <!-- Coluna com ícone de link para redirecionamento -->
           <td @click="copyToClipboard(shortURL[index])">
             <button><span class="uk-icon" uk-icon="link"></span></button>
           </td>
@@ -33,12 +29,6 @@
       </tbody>
     </table>
   </div>
-
-  <div class="uk-margin uk-position-top-center uk-text-center uk-padding-small">
-    <stripe-buy-button :buy-button-id="buttonPayAPIKey" :publishable-key="paymentAPIKey">
-    </stripe-buy-button>
-  </div>
-
   <div
     v-if="error && shortURL.length == 0"
     class="uk-alert-danger uk-margin uk-position-bottom-left uk-text-center"
@@ -60,9 +50,6 @@
 <script setup>
 import { ref } from 'vue'
 
-const paymentAPIKey = ref(import.meta.env.VITE_PAYMENT_ID)
-const buttonPayAPIKey = ref(import.meta.env.VITE_BUTTON_PAY_ID)
-
 const success = ref('')
 const error = ref('')
 const url = ref('')
@@ -78,7 +65,7 @@ const generateURL = async () => {
     return
   }
   try {
-    const response = await fetch('https://www.urlshortener.com.br/api/short', {
+    const response = await fetch('  http://localhost:4440/api/short', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -97,7 +84,7 @@ const generateURL = async () => {
     }
 
     fullURL.value.push(url.value)
-    shortURL.value.push(data.short)
+    shortURL.value.push(data.shortUrl)
   } catch (error) {
     console.error('Error:', error.message)
   }
